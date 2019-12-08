@@ -26,9 +26,10 @@ void testPut() {
 }
 
 void testGet() {
-	assert(tree->get(1) == "B");
-	assert(tree->get(5) == "A");
-	assert(tree->get(8) == "D");
+	assert(tree->get(1).value() == "B");
+	assert(tree->get(5).value() == "A");
+	assert(tree->get(8).value() == "D");
+	assert(tree->get(11).validation() == false);
 	std::cout << "Run get test\n";
 }
 

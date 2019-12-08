@@ -6,6 +6,7 @@
 #include <cmath>
 #include <algorithm>
 #include <iomanip>
+#include <cassert>
 #include "TreeMap.h"
 
 using namespace std::chrono;
@@ -88,6 +89,7 @@ int main() {
 	//m(); 
 	lookUpT();
 	lookUpM();
-	//lookUpUM();
+	lookUpUM();
+	std::cout << "\n";
 	return 0;
 }

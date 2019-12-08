@@ -5,10 +5,20 @@
 #include <vector>
 #include <stack>
 #include <utility>
-#include <cassert>
+
+template<typename A> class optional {
+	bool _isValid;
+	A _value;
+	public:
+	optional(): _isValid(false) {}
+	optional(A e) : _isValid(true), _value(e) {}
+	optional(A e, bool v) : _isValid(v), _value(e) {}
+	A value() const { return _value; }
+	bool validation() const {return _isValid;}
+};
+
 
 template <typename K, typename V, typename Compare = std::less<K>>
-
 class TreeMap {
 	
 	private:
@@ -223,16 +233,16 @@ class TreeMap {
 		}
 		size_t length() {return this->N;}
 		bool isEmpty()  {return this->root == nullptr;}
-		V get(K _key) {
+		optional<V> get(K _key) {
 			Node * res = root;
 			while (nullptr != res) {
 				if (_key < res->key)
 					res = res->left;
 				else if (res->key < _key)
 					res = res->right;
-				else return res->val;
+				else return optional<V>(res->val);
 			}
-			return NULL;
+			return optional<V>{};
 		}
 		void put(K _key, V _val) {
 			if (nullptr == this->root) {
